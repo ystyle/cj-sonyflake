@@ -1,0 +1,14 @@
+{
+    "resolves": [
+        {
+            "organization": "ystyle",
+            "name": "sonyflake",
+            "path": "./",
+            "version": "1.0.0",
+            "hash": "WyJ5c3R5bGUiLCJzb255Zmxha2UiLCIvaG9tZS95c3R5bGUvQ29kZS9DYW5nSmllL3NvbnlmbGFrZSIsIjEuMC4wIl0tPA9ithzP5cl2Mqt05VhOvcLLOA==",
+            "requires": [],
+            "packageRequires": {},
+            "foreign_requires": {}
+        }
+    ]
+}
