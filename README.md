@@ -31,7 +31,7 @@ from sonyflake import sonyflake.*
 
 ### sample
 ```go
-import sonyflake.*
+from sonyflake import sonyflake.*
 
 func main() {
     let st  = Setting(1)
