@@ -5,12 +5,12 @@ from std import time.*
 from std import util.Random
 from std import collection.HashMap
 
-let BitLenTime: Int64 = 39
-let BitLenSequence: Int64 = 8
+let BitLenTime:      Int64 = 39
+let BitLenSequence:  Int64 = 8
 let BitLenMachineID: Int64 = 63 - BitLenTime - BitLenSequence
 
-let defaultTime = Time(2020, Month.October, 1, loc: Location.UTC)
-let sonyflackTime = Duration.millisecond(10)
+let defaultTime       = Time(2020, Month.October, 1, loc: Location.UTC)
+let sonyflackTime     = Duration.millisecond(10)
 let sonyflakeTimeUnit = 1e7
 
 external record Setting {
@@ -29,11 +29,11 @@ external record Setting {
 }
 
 external class Sonyflake {
-    private let mutex: Mutex
-    private let startTime: Int64
+    private let mutex:       Mutex
+    private let startTime:   Int64
     private var elapsedTime: Int64 = 0
-    private var sequence: UInt16
-    private let machineID: UInt16
+    private var sequence:    UInt16
+    private let machineID:   UInt16
 
     init(st: Setting) {
         this.mutex = Mutex()
