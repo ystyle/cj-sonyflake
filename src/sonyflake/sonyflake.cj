@@ -13,7 +13,7 @@ let defaultTime       = Time(2020, Month.October, 1, loc: Location.UTC)
 let sonyflackTime     = Duration.millisecond(10)
 let sonyflakeTimeUnit = 1e7
 
-external record Setting {
+public record Setting {
     let StartTime: Time
     let MachineID: UInt16
 
@@ -28,7 +28,7 @@ external record Setting {
     }
 }
 
-external class Sonyflake {
+public class Sonyflake {
     private let mutex:       Mutex
     private let startTime:   Int64
     private var elapsedTime: Int64 = 0
@@ -90,7 +90,7 @@ func sleepTime(overtime: Int64): Int64 {
     return d3.nanoseconds()
 }
 
-external func Decompose(id: UInt64): HashMap<String, UInt64> {
+public func Decompose(id: UInt64): HashMap<String, UInt64> {
     let m = HashMap<String, UInt64>()
     let maskSequence = UInt64(((1 << BitLenSequence) - 1) << BitLenMachineID)
     let maskMachineID = UInt64((1 << BitLenMachineID) - 1)
