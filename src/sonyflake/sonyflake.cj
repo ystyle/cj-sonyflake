@@ -17,12 +17,12 @@ public record Setting {
     let StartTime: Time
     let MachineID: UInt16
 
-    init(StartTime: Time, MachineID: UInt16) {
+    public init(StartTime: Time, MachineID: UInt16) {
         this.StartTime = StartTime
         this.MachineID = MachineID
     }
 
-    init(MachineID: UInt16) {
+    public init(MachineID: UInt16) {
         this.StartTime = defaultTime
         this.MachineID = MachineID
     }
@@ -35,7 +35,7 @@ public class Sonyflake {
     private var sequence:    UInt16
     private let machineID:   UInt16
 
-    init(st: Setting) {
+    public init(st: Setting) {
         this.mutex = Mutex()
         this.sequence = UInt16((1 << BitLenSequence - 1))
         if (st.StartTime > Time.now()) {
@@ -44,7 +44,7 @@ public class Sonyflake {
         this.startTime = toSonyflakeTime(st.StartTime)
         this.machineID = st.MachineID
     }
-    func NextID(): UInt64 {
+    public func NextID(): UInt64 {
         let maskSequence = UInt16((1 << BitLenSequence) - 1)
         this.mutex.lock()
         let current = currentElapsedTime(this.startTime)
