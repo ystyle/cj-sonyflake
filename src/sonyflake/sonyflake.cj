@@ -2,7 +2,7 @@ package sonyflake
 
 from std import sync.Mutex
 from std import time.*
-from std import util.Random
+from std import random.*
 from std import collection.HashMap
 
 let BitLenTime:      Int64 = 39

@@ -1,5 +1,5 @@
 {
-    "cjc_version": "0.14",
+    "cjc_version": "0.27.1",
     "organization": "ystyle",
     "name": "sonyflake",
     "description": "nothing here",
@@ -7,6 +7,6 @@
     "requires": {},
     "PackageRequires": {},
     "foreign_requires": {},
-    "library_type": "executable",
+    "output_type": "static",
     "command_option": ""
 }
