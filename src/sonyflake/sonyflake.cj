@@ -1,6 +1,6 @@
 package sonyflake
 
-from std import sync.Mutex
+from std import sync.ReentrantMutex
 from std import time.*
 from std import random.*
 from std import collection.HashMap
@@ -29,14 +29,14 @@ public record Setting {
 }
 
 public class Sonyflake {
-    private let mutex:       Mutex
+    private let mutex:       ReentrantMutex
     private let startTime:   Int64
     private var elapsedTime: Int64 = 0
     private var sequence:    UInt16
     private let machineID:   UInt16
 
     public init(st: Setting) {
-        this.mutex = Mutex()
+        this.mutex = ReentrantMutex()
         this.sequence = UInt16((1 << BitLenSequence - 1))
         if (st.StartTime > Time.now()) {
             throw Exception("StartTime can not after now")
