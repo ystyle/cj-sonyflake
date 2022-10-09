@@ -13,7 +13,7 @@ let defaultTime       = Time(2020, Month.October, 1, loc: Location.UTC)
 let sonyflackTime     = Duration.millisecond(10)
 let sonyflakeTimeUnit = 1e7
 
-public record Setting {
+public struct Setting {
     let StartTime: Time
     let MachineID: UInt16
 
