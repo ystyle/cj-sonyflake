@@ -9,7 +9,14 @@ func testAll():Unit {
     let sf = Sonyflake(st)
     for (i in 0..10) {
         let id = sf.NextID()
-        println("id: ${id}")
         println(Decompose(id))
     }
+    let id:UInt64 = 106997944976736257
+    let m = Decompose(id)
+    println(m)
+    @Assert(m["id"], id)
+    @Assert(m["msb"], 0)
+    @Assert(m["time"], 6377574502)
+    @Assert(m["sequence"], 9)
+    @Assert(m["machine-id"], 1)
 }

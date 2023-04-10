@@ -76,7 +76,7 @@ public class Sonyflake {
 }
 
 func toSonyflakeTime(t: Time): Int64 {
-    return t.utc().unixNano() / Int64(sonyflakeTimeUnit)
+    return t.utc().unixTimeStamp().nanoseconds() / Int64(sonyflakeTimeUnit)
 }
 
 func currentElapsedTime(startTime: Int64): Int64 {
@@ -85,7 +85,7 @@ func currentElapsedTime(startTime: Int64): Int64 {
 
 func sleepTime(overtime: Int64): Int64 {
     let d1 = Duration.microsecond(overtime * 10)
-    let d2 = Duration.nanosecond(Time.now().utc().unixNano() % Int64(sonyflakeTimeUnit))
+    let d2 = Duration.nanosecond(Time.now().utc().unixTimeStamp().nanoseconds() % Int64(sonyflakeTimeUnit))
     let d3 = d1 - d2
     return d3.nanoseconds()
 }
