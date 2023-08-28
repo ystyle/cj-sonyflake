@@ -1,6 +1,6 @@
 package sonyflake
 
-from std import sync.ReentrantMutex
+from std import sync. {ReentrantMutex, sleep}
 from std import time.*
 from std import random.*
 from std import collection.HashMap
@@ -9,15 +9,15 @@ let BitLenTime:      Int64 = 39
 let BitLenSequence:  Int64 = 8
 let BitLenMachineID: Int64 = 63 - BitLenTime - BitLenSequence
 
-let defaultTime       = Time(2020, Month.October, 1, loc: Location.UTC)
-let sonyflackTime     = Duration.millisecond(10)
+let defaultTime       = DateTime.of(year: 2020, month: 10, dayOfMonth: 1, hour: 0, minute: 0, second: 0, nanosecond: 0, timeZone: TimeZone.UTC)
+let sonyflackTime     = Duration.millisecond  * 10
 let sonyflakeTimeUnit = 1e7
 
 public struct Setting {
-    let StartTime: Time
+    let StartTime: DateTime
     let MachineID: UInt16
 
-    public init(StartTime: Time, MachineID: UInt16) {
+    public init(StartTime: DateTime, MachineID: UInt16) {
         this.StartTime = StartTime
         this.MachineID = MachineID
     }
@@ -38,7 +38,7 @@ public class Sonyflake {
     public init(st: Setting) {
         this.mutex = ReentrantMutex()
         this.sequence = UInt16((1 << BitLenSequence - 1))
-        if (st.StartTime > Time.now()) {
+        if (st.StartTime > DateTime.now()) {
             throw Exception("StartTime can not after now")
         }
         this.startTime = toSonyflakeTime(st.StartTime)
@@ -75,19 +75,19 @@ public class Sonyflake {
     }
 }
 
-func toSonyflakeTime(t: Time): Int64 {
-    return t.utc().unixTimeStamp().nanoseconds() / Int64(sonyflakeTimeUnit)
+func toSonyflakeTime(t: DateTime): Int64 {
+    return t.inUTC().toUnixTimeStamp().toNanoseconds() / Int64(sonyflakeTimeUnit)
 }
 
 func currentElapsedTime(startTime: Int64): Int64 {
-    return toSonyflakeTime(Time.now()) - startTime
+    return toSonyflakeTime(DateTime.now()) - startTime
 }
 
-func sleepTime(overtime: Int64): Int64 {
-    let d1 = Duration.microsecond(overtime * 10)
-    let d2 = Duration.nanosecond(Time.now().utc().unixTimeStamp().nanoseconds() % Int64(sonyflakeTimeUnit))
+func sleepTime(overtime: Int64): Duration {
+    let d1 = Duration.nanosecond * (overtime * Int64(sonyflakeTimeUnit))
+    let d2 = Duration.nanosecond * (DateTime.now().inUTC().toUnixTimeStamp().toNanoseconds() % Int64(sonyflakeTimeUnit))
     let d3 = d1 - d2
-    return d3.nanoseconds()
+    return d3
 }
 
 public func Decompose(id: UInt64): HashMap<String, UInt64> {

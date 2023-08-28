@@ -11,9 +11,12 @@ func testAll():Unit {
         let id = sf.NextID()
         println(Decompose(id))
     }
+}
+
+@Test
+func testDecompose():Unit {
     let id:UInt64 = 106997944976736257
     let m = Decompose(id)
-    println(m)
     @Assert(m["id"], id)
     @Assert(m["msb"], 0)
     @Assert(m["time"], 6377574502)
