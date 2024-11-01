@@ -1,6 +1,6 @@
 package sonyflake
 
-import std.sync.{ReentrantMutex, sleep}
+import std.sync.{ReentrantMutex}
 import std.time.*
 import std.random.*
 import std.collection.HashMap
