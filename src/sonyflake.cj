@@ -1,16 +1,15 @@
 package sonyflake
 
-from std import sync. {ReentrantMutex, sleep}
-from std import time.*
-from std import random.*
-from std import collection.HashMap
+import std.sync.{ReentrantMutex}
+import std.time.*
+import std.random.*
+import std.collection.HashMap
 
-let BitLenTime:      Int64 = 39
-let BitLenSequence:  Int64 = 8
+let BitLenTime: Int64 = 39
+let BitLenSequence: Int64 = 8
 let BitLenMachineID: Int64 = 63 - BitLenTime - BitLenSequence
-
-let defaultTime       = DateTime.of(year: 2020, month: 10, dayOfMonth: 1, hour: 0, minute: 0, second: 0, nanosecond: 0, timeZone: TimeZone.UTC)
-let sonyflackTime     = Duration.millisecond  * 10
+let defaultTime = DateTime.of(year: 2020, month: 10, dayOfMonth: 1, hour: 0, minute: 0, second: 0, nanosecond: 0,
+    timeZone: TimeZone.UTC)
 let sonyflakeTimeUnit = 1e7
 
 public struct Setting {
@@ -29,11 +28,11 @@ public struct Setting {
 }
 
 public class Sonyflake {
-    private let mutex:       ReentrantMutex
-    private let startTime:   Int64
+    private let mutex: ReentrantMutex
+    private let startTime: Int64
     private var elapsedTime: Int64 = 0
-    private var sequence:    UInt16
-    private let machineID:   UInt16
+    private var sequence: UInt16
+    private let machineID: UInt16
 
     public init(st: Setting) {
         this.mutex = ReentrantMutex()
@@ -53,7 +52,7 @@ public class Sonyflake {
             this.sequence = 0
         } else {
             this.sequence = (this.sequence + 1) & maskSequence
-             if (this.sequence == 0) {
+            if (this.sequence == 0) {
                 println("==0")
                 this.elapsedTime++
                 let overtime = this.elapsedTime - current

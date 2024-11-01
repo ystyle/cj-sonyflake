@@ -1,7 +1,7 @@
 package sonyflake
 
-from std import unittest.*
-from std import unittest.testmacro.*
+import std.unittest.*
+import std.unittest.testmacro.*
 
 @Test
 func testAll():Unit {

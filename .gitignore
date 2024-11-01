@@ -4,3 +4,6 @@ build
 unittest
 module-resolve.json
 .cjpm-history
+target
+.cjpm-history
+.cache
