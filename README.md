@@ -10,33 +10,9 @@ Sonyflake 具有以下优点和缺点：
 - 它可以在比 Snowflake (2^10) 更多的分布式机器 (2^16) 上工作
 - 单机/线程每10毫秒最多生成2^8个ID（比Snowflake慢）
 
-### 使用
-- 下载代码并创建cpm项目， sonyflake和需要使用的项目目录平级(否则自行修改依赖的path字段)
-```shell
-$ cd ~/CodeToCangjie
-$ git clone https://gitee.com/HW-PLLab/sonyflake.git
-$ mkdir sonyflake-demo
-$ cd sonyflake-demo
-$ cpm new test demo
-```
-- 在`sonyflake-demo/module.json`添加`requires`
-```json
-"requires": {
-	"sonyflake": {
-		"organization": "ystyle",
-		"version":"1.0.0",
-		"path": "../sonyflake"
-	  }
-}
-```
-- 导入包
-```cj
-from sonyflake import sonyflake.*
-```
-
 ### sample
 ```go
-from sonyflake import sonyflake.*
+import sonyflake.*
 
 func main() {
     let st  = Setting(1)
