@@ -10,6 +10,18 @@ Sonyflake 具有以下优点和缺点：
 - 它可以在比 Snowflake (2^10) 更多的分布式机器 (2^16) 上工作
 - 单机/线程每10毫秒最多生成2^8个ID（比Snowflake慢）
 
+### 安装
+1. beta channel版本在`cjpm.toml`里添加
+```toml
+[dependencies]
+  sonyflake = { git = "https://github.com/ystyle/sonyflake-cj", branch = "0.53"}
+```
+2. dev channel版本在`cjpm.toml`里添加
+```toml
+[dependencies]
+  sonyflake = { git = "https://github.com/ystyle/sonyflake-cj", branch = "master"}
+```
+
 ### sample
 ```go
 import sonyflake.*
