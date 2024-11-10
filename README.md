@@ -19,7 +19,7 @@ Sonyflake 具有以下优点和缺点：
 2. dev channel版本在`cjpm.toml`里添加
 ```toml
 [dependencies]
-  sonyflake = { git = "https://github.com/ystyle/sonyflake-cj", branch = "master"}
+  sonyflake = { git = "https://github.com/ystyle/cj-sonyflake", branch = "master"}
 ```
 
 ### sample
